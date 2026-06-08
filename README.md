@@ -122,9 +122,9 @@ Generated for every date between the earliest and latest transaction in the clea
 | Column | Type | Description |
 |---|---|---|
 | transaction_id | TEXT PK | Natural key |
-| date_key | INTEGER FK | → dim_date |
-| store_id | TEXT FK | → dim_store |
-| product_id | TEXT FK | → dim_product |
+| date_key | INTEGER | Foreign key → dim_date |
+| store_id | TEXT | Foreign key → dim_store |
+| product_id | TEXT | Foreign key → dim_product |
 | customer_id | TEXT | NULL for guest transactions |
 | quantity | INTEGER | Negative for returns |
 | unit_price | REAL | Price at time of transaction |
