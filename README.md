@@ -111,10 +111,10 @@ Generated for every date between the earliest and latest transaction in the clea
 | Column | Type | Description |
 |---|---|---|
 | product_id | TEXT PK | Natural key from source |
-| product_name | TEXT | |
+| product_name | TEXT | Display name |
 | category | TEXT | "Unknown" where missing |
 | unit_price | REAL | Current/highest known price |
-| supplier_id | TEXT | |
+| supplier_id | TEXT | Supplier identifier |
 | is_zero_price | INTEGER | Flag for $0 products |
 
 ### fact_sales
@@ -177,8 +177,7 @@ With more time and a real deployment target, I would add:
 
 ## What I'd Do Differently With More Time
 
-- **SCD Type 2 for products** — track price history in the dimension rather than just keeping the latest price
+- **SCD Type 2 for products** — track price history in the dimension with effective/end dates rather than just keeping the latest price
 - **More granular date parsing** — validate ambiguous dates (where day ≤ 12) against transaction patterns or surrounding records rather than assuming US format
-- **Quarantine table in SQLite** — persist quarantined records in the warehouse database alongside the star schema, in addition to the current CSV output, for unified operational visibility
-- **CI/CD pipeline** — GitHub Actions running `pytest` and the full pipeline on every push
-- **Configurable pipeline** — externalize file paths, reference date, and cleaning thresholds into a YAML config rather than constants in code
+- **Quarantine table in SQLite** — persist quarantined records in the warehouse database alongside the star schema for unified querying, in addition to the current CSV output
+- **Data reconciliation assertions** — automated check that source rows = clean rows + quarantined rows + deduplicated rows, failing the pipeline if counts don't balance
