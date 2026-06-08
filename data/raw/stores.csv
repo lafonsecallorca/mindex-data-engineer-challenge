@@ -1,0 +1,17 @@
+store_id,store_name,city,state,zip_code,region,opened_date
+S001,Eastview Mall,Victor,NY,14564,Northeast,2010-03-15
+S002,Marketplace Mall,Rochester,NY,14623,Northeast,2008-11-01
+S003,Greece Ridge Center,Greece,NY,0938,Northeast,2012-06-20
+S004,Crossroads Center,St. Cloud,MN,56301,Midwest,2015-09-10
+S005,Mall of America,Bloomington,MN,55425,Midwest,2011-04-07
+S006,Lakeside Shopping Ctr,Metairie,LA,70002,South,2009-08-14
+S007,Downtown Rochester,Rochester,NY,14604,Northeast,2006-01-22
+S007,Rochester Downtown,Rochester,NY,14604,Northeast,2006-01-22
+S008,Galleria at Crystal Run,Middletown,NY,10941,Northeast,2014-02-18
+S009,Tucson Mall,Tucson,AZ,85705,West,2013-07-30
+S010,Park Place Mall,Tucson,AZ,85711,West,2016-10-05
+S011,Southpark Meadows,Austin,TX,78748,South,2017-03-12
+S012,The Domain,Austin,TX,78758,South,2018-11-28
+S013,Cascade Station,Portland,OR,97220,,2019-05-14
+S014,Lloyd Center,Portland,OR,97232,,2007-09-09
+S015,Alderwood Mall,Lynnwood,WA,98036,West,2020-01-15
