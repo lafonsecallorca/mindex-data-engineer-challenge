@@ -67,7 +67,7 @@ Each module has a single responsibility:
 | Issue | File | Count | Decision | Rationale |
 |---|---|---|---|---|
 | Exact duplicate row (P012) | products.csv | 1 | Dropped | Identical in every column — artifact of a bad data extract. |
-| Multiple prices for same product (P005) | products.csv | 1 | Kept highest price, assumed most recent | Dimension table needs one row per product. Fact table preserves the `unit_price` from each transaction, so historical pricing is not lost. |
+| Multiple prices for same product (P005) | products.csv | 1 | Kept highest price as tiebreaker | Dimension table needs one row per product. Without timestamps on the product feed, there's no way to determine which price is current. The choice of tiebreaker has minimal impact because the fact table preserves the `unit_price` from each transaction. |
 | NULL category | products.csv | 5 | Filled with "Unknown" | Products are valid catalog entries. "Unknown" is queryable and doesn't break GROUP BY analytics. |
 | Zero unit_price (P027) | products.csv | 1 | Kept with `is_zero_price` flag | May be a promotional item or data error. Flag allows downstream filtering without data loss. |
 
@@ -143,7 +143,7 @@ Generated for every date between the earliest and latest transaction in the clea
 
 ### Key Modeling Decisions
 
-**Products with multiple prices:** The dimension holds the highest (assumed most recent) price. The fact table carries the `unit_price` from each transaction, preserving what was actually charged. This avoids the need for SCD Type 2 on the product dimension at this scale.
+**Products with multiple prices:** The dimension holds the highest price as a tiebreaker — without timestamps on the product feed, there's no way to determine which is current. The fact table carries the `unit_price` from each transaction, preserving what was actually charged. This avoids the need for SCD Type 2 on the product dimension at this scale.
 
 **Returns:** Kept in `fact_sales` with `is_return = 1` and negative `quantity`/`total_amount`. This allows net revenue calculations (Q1) to include returns as reductions, while other queries (Q4) can exclude them via the flag.
 
