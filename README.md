@@ -2,8 +2,16 @@
 
 ## Setup & Run
 
+Requires **Python 3.10+**.
+
 ```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+
 pip install -r requirements.txt
+
+# Run from the project root directory
 python src/pipeline.py
 pytest tests/ -v
 ```
